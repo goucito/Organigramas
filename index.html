@@ -3,118 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organigrama de la Unión Europea</title>
+    <title>Organigrama de Suiza</title>
     <style>
         body {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg');
+            background-size: cover;
             font-family: Arial, sans-serif;
             text-align: center;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
         }
-        h1 {
-            text-shadow: 3px 3px 5px black;
-        }
-        .container {
+        .organigrama {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px;
-            position: relative;
+            margin-top: 50px;
         }
-        .line {
-            width: 3px;
-            height: 30px;
-            background-color: white;
-            margin: 5px auto;
-        }
-        .row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-        }
-        .box {
-            width: 250px;
+        .cuadro {
+            background: white;
+            border: 2px solid #0044cc;
             padding: 10px;
-            background-color: rgba(255, 223, 0, 0.9);
-            border-radius: 8px;
+            margin: 10px;
+            display: inline-block;
             cursor: pointer;
-            text-align: center;
-            color: black;
-            font-weight: bold;
             position: relative;
         }
-        .box:hover {
-            background-color: rgba(255, 200, 0, 0.9);
-        }
-        .info {
+        .explicacion {
             display: none;
             position: absolute;
             left: 110%;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 0;
+            background: white;
+            border: 1px solid #0044cc;
             padding: 10px;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 250px;
+            width: 200px;
             text-align: left;
-            color: black;
-            z-index: 100;
+            z-index: 10;
+        }
+        .linea {
+            width: 2px;
+            height: 20px;
+            background: #0044cc;
+            margin: 5px auto;
         }
     </style>
 </head>
-<body onclick="hideInfo(event)">
-    <h1>Organigrama de la Unión Europea</h1>
-    <div class="container">
-        <div class="box" onclick="showInfo(event, this, 'consejo')">Consejo Europeo<div class="info"></div></div>
-        <div class="line"></div>
-        <div class="row">
-            <div class="box" onclick="showInfo(event, this, 'comision')">Comisión Europea<div class="info"></div></div>
+<body>
+    <div class="organigrama">
+        <div class="cuadro" onclick="mostrarExplicacion(this)">
+            Consejo Federal
+            <div class="explicacion">Ejecutivo de siete miembros con representación proporcional de partidos y lenguas.</div>
         </div>
-        <div class="line"></div>
-        <div class="row">
-            <div class="box" onclick="showInfo(event, this, 'parlamento')">Parlamento Europeo<div class="info"></div></div>
-            <div class="box" onclick="showInfo(event, this, 'consejo_ministros')">Consejo de la UE<div class="info"></div></div>
+        <div class="linea"></div>
+        <div class="cuadro" onclick="mostrarExplicacion(this)">
+            Parlamento Suizo
+            <div class="explicacion">Bicameral con Consejo Nacional y Consejo de los Estados, representa la diversidad del país.</div>
         </div>
-        <div class="line"></div>
-        <div class="row">
-            <div class="box" onclick="showInfo(event, this, 'tribunal')">Tribunal de Justicia de la UE<div class="info"></div></div>
-            <div class="box" onclick="showInfo(event, this, 'bce')">Banco Central Europeo<div class="info"></div></div>
+        <div class="linea"></div>
+        <div class="cuadro" onclick="mostrarExplicacion(this)">
+            Tribunal Federal
+            <div class="explicacion">No tiene derecho de revisión judicial, lo que lo diferencia de otros sistemas.</div>
+        </div>
+        <div class="linea"></div>
+        <div class="cuadro" onclick="mostrarExplicacion(this)">
+            Cantones
+            <div class="explicacion">26 cantones con gran autonomía en legislación y administración.</div>
         </div>
     </div>
-    
+
     <script>
-        function showInfo(event, element, organo) {
-            event.stopPropagation();
-            hideAllInfo();
-            
-            let infoText = {
-                "consejo": "El Consejo Europeo es la máxima instancia de liderazgo político en la UE. Compuesto por los jefes de Estado o de Gobierno de los Estados miembros, establece la orientación general. Es un órgano de consenso que garantiza la representación equitativa de los países miembros.",
-                "comision": "La Comisión Europea actúa como el ejecutivo de la UE y representa una coalición multipartidista permanente. Su estructura de 27 comisarios, cada uno designado por un Estado miembro, refuerza el modelo de democracia consensual al equilibrar distintos intereses nacionales y políticos.",
-                "parlamento": "El Parlamento Europeo, elegido directamente por los ciudadanos, sigue un modelo de multipartidismo. Aunque comparte el poder legislativo con el Consejo de la UE, ha ganado influencia con tratados como el de Lisboa, promoviendo una democracia más equilibrada y representativa.",
-                "consejo_ministros": "El Consejo de la UE es la cámara alta del poder legislativo y está compuesto por ministros nacionales. Su estructura variable, dependiendo del tema en discusión, permite que cada país participe activamente en la toma de decisiones. Funciona bajo un sistema de votación que combina mayoría cualificada y consenso.",
-                "tribunal": "El Tribunal de Justicia de la UE supervisa la interpretación y aplicación del derecho comunitario. Con autoridad para invalidar leyes nacionales que contradigan los tratados de la UE, refuerza el principio de legalidad y estabilidad institucional en el modelo consensual.",
-                "bce": "El Banco Central Europeo es una institución independiente que regula la política monetaria de la zona euro. Su estructura altamente autónoma garantiza la estabilidad económica sin interferencias políticas, funcionando como un pilar clave de la descentralización dentro del marco de la UE."
-            };
-            
-            let infoBox = element.querySelector('.info');
-            infoBox.innerHTML = `<p>${infoText[organo]}</p>`;
-            infoBox.style.display = 'block';
+        function mostrarExplicacion(elemento) {
+            document.querySelectorAll('.explicacion').forEach(e => e.style.display = 'none');
+            elemento.querySelector('.explicacion').style.display = 'block';
         }
-
-        function hideAllInfo() {
-            document.querySelectorAll('.info').forEach(info => {
-                info.style.display = 'none';
-            });
-        }
-
-        function hideInfo(event) {
-            if (!event.target.closest('.box')) {
-                hideAllInfo();
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.cuadro')) {
+                document.querySelectorAll('.explicacion').forEach(e => e.style.display = 'none');
             }
-        }
+        });
     </script>
 </body>
 </html>
